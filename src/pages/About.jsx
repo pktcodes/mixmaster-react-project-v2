@@ -1,6 +1,8 @@
+import Wrapper from '../assets/wrappers/AboutPage';
+
 const About = () => {
   return (
-    <div>
+    <Wrapper>
       <h3>about us</h3>
       <p>
         {`Introducing "MixMaster," the ultimate party sidekick app that fetches
@@ -10,7 +12,7 @@ const About = () => {
         ready to shake up your mixology game, one fantastical mocktail at a
         time, and let the laughter and giggles flow!`}
       </p>
-    </div>
+    </Wrapper>
   );
 };
 
