@@ -1,8 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
-
-/* CSS File */
-// import Wrapper from '../assets/wrappers/Navbar';
+import Wrapper from '../assets/wrappers/Navbar';
 
 const Navbar = () => {
   return (
@@ -24,9 +21,5 @@ const Navbar = () => {
     </Wrapper>
   );
 };
-
-const Wrapper = styled.nav`
-  background: springgreen;
-`;
 
 export default Navbar;
