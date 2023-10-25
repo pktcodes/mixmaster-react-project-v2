@@ -5,7 +5,9 @@ const HomeLayout = () => {
   return (
     <div>
       <Navbar />
-      <Outlet />
+      <section className="page">
+        <Outlet />
+      </section>
     </div>
   );
 };
