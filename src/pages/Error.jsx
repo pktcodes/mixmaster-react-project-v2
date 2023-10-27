@@ -12,7 +12,7 @@ const Error = () => {
         <div>
           <img src={img} alt={errorResponse.statusText} />
           <h3>ohh!</h3>
-          <h3>{"we can't seem to find the page you are looking for"}</h3>
+          <p>{"We can't seem to find the page you are looking for"}</p>
           <Link to="/">back to home</Link>
         </div>
       </Wrapper>
