@@ -17,6 +17,9 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Landing />,
+        loader: () => {
+          return 'something';
+        },
       },
       {
         path: 'cocktail',
