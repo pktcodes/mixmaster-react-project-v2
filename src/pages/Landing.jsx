@@ -1,5 +1,8 @@
 import { useLoaderData } from 'react-router-dom';
 
+const url =
+  'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita';
+
 export const loader = () => {
   return 'hello world';
 };
