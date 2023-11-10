@@ -6,10 +6,9 @@ const cocktailSearchUrl =
   'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
 
 export const loader = async () => {
-  const searchTerm = 'ssssss';
+  const searchTerm = '';
   const response = await axios.get(`${cocktailSearchUrl}${searchTerm}`);
   const data = response.data.drinks;
-  console.log(data);
   return { drinks: data, searchTerm };
 };
 

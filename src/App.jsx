@@ -25,7 +25,7 @@ const router = createBrowserRouter([
         loader: landingLoader,
       },
       {
-        path: 'cocktail',
+        path: 'cocktail/:id',
         element: <Cocktail />,
       },
       {
@@ -43,4 +43,5 @@ const router = createBrowserRouter([
 const App = () => {
   return <RouterProvider router={router} />;
 };
+
 export default App;
