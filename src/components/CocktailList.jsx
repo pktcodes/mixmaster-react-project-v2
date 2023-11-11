@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import Wrapper from '../assets/wrappers/CocktailList';
 import CocktailCard from './CocktailCard';
+import styled from 'styled-components';
 
 const CocktailList = ({ drinks }) => {
   if (!drinks) {
@@ -29,6 +29,12 @@ const CocktailList = ({ drinks }) => {
     </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+`;
 
 CocktailList.propTypes = {
   drinks: PropTypes.array,

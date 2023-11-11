@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-
-import Wrapper from '../assets/wrappers/CocktailCard';
+import styled from 'styled-components';
 
 const CocktailCard = ({ id, image, name, glass, info }) => {
   return (
@@ -20,6 +19,37 @@ const CocktailCard = ({ id, image, name, glass, info }) => {
     </Wrapper>
   );
 };
+
+const Wrapper = styled.article`
+  background: var(--white);
+  border-radius: var(--borderRadius);
+  box-shadow: var(--shadow-2);
+  transition: var(--transition);
+  /* display: grid;
+  grid-template-rows: auto 1fr; */
+  :hover {
+    box-shadow: var(--shadow-4);
+  }
+  img {
+    height: 15rem;
+    border-top-left-radius: var(--borderRadius);
+    border-top-right-radius: var(--borderRadius);
+  }
+  .footer {
+    padding: 1.5rem;
+    h4,
+    h5 {
+      margin-bottom: 0.5rem;
+    }
+    h4 {
+      font-weight: 700;
+    }
+    p {
+      margin-bottom: 1rem;
+      color: var(--grey-500);
+    }
+  }
+`;
 
 CocktailCard.propTypes = {
   id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
