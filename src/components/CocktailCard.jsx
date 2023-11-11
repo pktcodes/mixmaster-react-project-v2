@@ -27,7 +27,7 @@ const Wrapper = styled.article`
   transition: var(--transition);
   /* display: grid;
   grid-template-rows: auto 1fr; */
-  :hover {
+  &:hover {
     box-shadow: var(--shadow-4);
   }
   img {
