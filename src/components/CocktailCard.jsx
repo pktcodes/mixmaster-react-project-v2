@@ -1,8 +1,11 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CocktailCard = ({ id, image, name, glass, info }) => {
+  const data = useOutletContext();
+  console.log(data);
+
   return (
     <Wrapper>
       <div className="img-container">
