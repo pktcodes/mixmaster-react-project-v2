@@ -3,8 +3,8 @@ import { Link, useOutletContext } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CocktailCard = ({ id, image, name, glass, info }) => {
-  const data = useOutletContext();
-  console.log(data);
+  // const data = useOutletContext();
+  // console.log(data);
 
   return (
     <Wrapper>

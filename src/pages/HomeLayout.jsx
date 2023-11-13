@@ -6,7 +6,6 @@ const HomeLayout = () => {
 
   const navigation = useNavigation();
   const isPageLoading = navigation.state === 'loading';
-  console.log(isPageLoading);
 
   /* React Router DOM provides context prop for Outlet */
   const value = 'hello world';
@@ -18,7 +17,7 @@ const HomeLayout = () => {
         {isPageLoading ? (
           <div className="loading" />
         ) : (
-          <Outlet context={value} />
+          <Outlet context={{ value }} />
         )}
       </section>
     </>
