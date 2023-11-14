@@ -26,6 +26,25 @@ const Cocktail = () => {
     strInstructions: instructions,
   } = singleDrink;
 
+  const validIngredients = Object.keys(singleDrink)
+    .filter((key) => {
+      return key.startsWith('strIngredient') && singleDrink[key] !== null;
+    })
+    .map((key) => {
+      return singleDrink[key];
+    })
+    .join(', ');
+
+  /* Alternative Logic */
+  // const ingredientsAlternativeLogic = Object.entries(singleDrink)
+  //   .filter(([key, value]) => {
+  //     return key.includes('strIngredient') && value !== null;
+  //   })
+  //   .map(([, value]) => {
+  //     return value;
+  //   })
+  //   .join(', ');
+
   return (
     <Wrapper>
       <header>
@@ -52,6 +71,10 @@ const Cocktail = () => {
           <p>
             <span className="drink-data">glass :</span>
             {glass}
+          </p>
+          <p>
+            <span className="drink-data">ingredients :</span>
+            {validIngredients}
           </p>
           <p>
             <span className="drink-data">instructions :</span>
