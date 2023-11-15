@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Link, Navigate, useLoaderData } from 'react-router-dom';
-import Wrapper from '../assets/wrappers/CocktailPage';
+import styled from 'styled-components';
 
 const singleCocktailUrl =
   'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
@@ -9,7 +9,6 @@ const singleCocktailUrl =
 export const loader = async ({ params }) => {
   const { id } = params;
   const { data } = await axios.get(`${singleCocktailUrl}${id}`);
-  console.log(data);
   return { id, data };
 };
 
@@ -17,9 +16,9 @@ const Cocktail = () => {
   const { id, data } = useLoaderData();
 
   /*
-   - Handle error when route doesn't exist
-   - API return data as null which breaks application
-   */
+  - Handle error when route doesn't exist
+  - API return data as null which breaks application
+  */
   // if (!data || data.drinks === null) {
   //   return (
   //     <h2 style={{ textAlign: 'center' }}>
@@ -27,6 +26,7 @@ const Cocktail = () => {
   //     </h2>
   //   );
   // }
+  // console.log(data);
 
   /* Alternative - Navigate user to homepage instead of showing error
    */
@@ -76,27 +76,27 @@ const Cocktail = () => {
         <img src={image} alt={name} className="img" />
         <div className="drink-info">
           <p>
-            <span className="drink-data">name :</span>
+            <span className="drink-label">name :</span>
             {name}
           </p>
           <p>
-            <span className="drink-data">category :</span>
+            <span className="drink-label">category :</span>
             {category}
           </p>
           <p>
-            <span className="drink-data">info :</span>
+            <span className="drink-label">info :</span>
             {info}
           </p>
           <p>
-            <span className="drink-data">glass :</span>
+            <span className="drink-label">glass :</span>
             {glass}
           </p>
           <p>
-            <span className="drink-data">ingredients :</span>
+            <span className="drink-label">ingredients :</span>
             {validIngredients}
           </p>
           <p>
-            <span className="drink-data">instructions :</span>
+            <span className="drink-label">instructions :</span>
             {instructions}
           </p>
         </div>
@@ -104,5 +104,46 @@ const Cocktail = () => {
     </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  header {
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  .btn {
+    margin-bottom: 1rem;
+  }
+  .img {
+    border-radius: var(--borderRadius);
+  }
+  .drink-info {
+    padding-top: 2rem;
+  }
+  .drink-info p {
+    font-weight: 700;
+    line-height: 2;
+    margin: 1rem 0;
+  }
+  .drink-label {
+    text-transform: capitalize;
+    background-color: var(--primary-300);
+    color: var(--primary-700);
+    border-radius: var(--borderRadius);
+    padding: 0.25rem 0.5rem;
+    margin-right: 0.5rem;
+    letter-spacing: var(--letterSpacing);
+  }
+  @media screen and (min-width: 992px) {
+    .drink {
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 2rem;
+      align-items: center;
+    }
+    .drink-info {
+      padding-top: 0;
+    }
+  }
+`;
 
 export default Cocktail;
