@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, Navigate, useLoaderData } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/CocktailPage';
 
 const singleCocktailUrl =
@@ -9,11 +9,30 @@ const singleCocktailUrl =
 export const loader = async ({ params }) => {
   const { id } = params;
   const { data } = await axios.get(`${singleCocktailUrl}${id}`);
+  console.log(data);
   return { id, data };
 };
 
 const Cocktail = () => {
   const { id, data } = useLoaderData();
+
+  /*
+   - Handle error when route doesn't exist
+   - API return data as null which breaks application
+   */
+  // if (!data || data.drinks === null) {
+  //   return (
+  //     <h2 style={{ textAlign: 'center' }}>
+  //       {"We can't seem to find the page you are looking for"}
+  //     </h2>
+  //   );
+  // }
+
+  /* Alternative - Navigate user to homepage instead of showing error
+   */
+  if (!data || data.drinks === null) {
+    return <Navigate to="/" />;
+  }
 
   const singleDrink = data.drinks[0];
 
@@ -35,7 +54,7 @@ const Cocktail = () => {
     })
     .join(', ');
 
-  /* Alternative Logic */
+  /* Alternative - Ingredients Logic */
   // const ingredientsAlternativeLogic = Object.entries(singleDrink)
   //   .filter(([key, value]) => {
   //     return key.includes('strIngredient') && value !== null;
