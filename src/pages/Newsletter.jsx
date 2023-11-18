@@ -3,7 +3,7 @@ import styled from 'styled-components';
 const Newsletter = () => {
   return (
     <Wrapper>
-      <form className="form">
+      <form className="form" method="POST">
         <h4>our newsletter</h4>
         {/* Name */}
         <div className="form-row">
