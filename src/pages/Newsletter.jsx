@@ -1,9 +1,17 @@
+import { Form } from 'react-router-dom';
 import styled from 'styled-components';
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  console.log(data);
+  return null;
+};
 
 const Newsletter = () => {
   return (
     <Wrapper>
-      <form className="form" method="POST">
+      <Form className="form" method="POST">
         <h4>our newsletter</h4>
         {/* Name */}
         <div className="form-row">
@@ -47,7 +55,7 @@ const Newsletter = () => {
         <button type="submit" className="btn btn-block">
           submit
         </button>
-      </form>
+      </Form>
     </Wrapper>
   );
 };
