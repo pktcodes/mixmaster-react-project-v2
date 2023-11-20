@@ -7,8 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import './index.css';
 
-toast('Hello Toast');
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />

@@ -9,11 +9,29 @@ export const action = async ({ request }) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
 
-  const response = await axios.post(newsletterUrl, data);
-  console.log(response);
+  const checkEmptyInputValues = Object.values(data)
+    .map((item) => {
+      return item.trim();
+    })
+    .includes('');
 
-  toast.success(response.data.msg);
-  return redirect('/');
+  if (checkEmptyInputValues) {
+    return toast.error('please check empty values');
+  }
+
+  if (data.email !== 'test@test.com') {
+    console.log("API expected email address: 'test@test.com'");
+  }
+
+  try {
+    const response = await axios.post(newsletterUrl, data);
+    toast.success(response.data.msg);
+    return redirect('/');
+  } catch (error) {
+    console.log(error);
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
 };
 
 const Newsletter = () => {
@@ -31,7 +49,7 @@ const Newsletter = () => {
             className="form-input"
             id="name"
             name="name"
-            defaultValue="praveen"
+            required
           />
         </div>
         {/* Last Name */}
@@ -44,7 +62,7 @@ const Newsletter = () => {
             className="form-input"
             id="lastName"
             name="lastName"
-            defaultValue="kumar"
+            required
           />
         </div>
         {/* Email */}
@@ -58,6 +76,7 @@ const Newsletter = () => {
             id="email"
             name="email"
             defaultValue="test@test.com"
+            required
           />
         </div>
         <button type="submit" className="btn btn-block">
