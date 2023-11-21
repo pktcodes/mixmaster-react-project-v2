@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Form, redirect } from 'react-router-dom';
+import { Form, redirect, useNavigation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import styled from 'styled-components';
 
@@ -35,6 +35,9 @@ export const action = async ({ request }) => {
 };
 
 const Newsletter = () => {
+  const navigation = useNavigation();
+  const isSubmitting = navigation.state === 'submitting';
+
   return (
     <Wrapper>
       <Form className="form" method="POST">
@@ -79,8 +82,8 @@ const Newsletter = () => {
             required
           />
         </div>
-        <button type="submit" className="btn btn-block">
-          submit
+        <button type="submit" className="btn btn-block" disabled={isSubmitting}>
+          {isSubmitting ? 'submitting' : 'submit'}
         </button>
       </Form>
     </Wrapper>
