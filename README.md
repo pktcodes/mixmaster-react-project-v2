@@ -1,5 +1,5 @@
 # MixMaaster 🍸
-> PROD [Live] : https://react-mixmaster-prod-v2.netlify.app/
+> PROD [Live] : https://react-mixmaster-v2-prod.netlify.app/
 
 #### MixMaster consists of a straight forward user interface where there is a 
 - List of cocktails by default, a search form to search for specific cocktails, and along with the routes to the **Home** , **About** , **NewsLetter** in the navigation bar.
@@ -36,15 +36,6 @@ React Router is a JavaScript library used in React applications to handle routin
 - apply javascript logic
 - only responsible for styling
 - [Styled Components Docs](https://styled-components.com/)
-
-#### TheCocktailDB
-
-[API](https://www.thecocktaildb.com/)
-
-- Search cocktail by name
-  www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
-- Lookup full cocktail details by id
-  www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007
 
 ---
 
