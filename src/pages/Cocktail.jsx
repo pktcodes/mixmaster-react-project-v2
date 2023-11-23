@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { Link, Navigate, useLoaderData } from 'react-router-dom';
 import styled from 'styled-components';
@@ -5,15 +6,27 @@ import styled from 'styled-components';
 const singleCocktailUrl =
   'https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=';
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const loader = async ({ params }) => {
-  const { id } = params;
-  const { data } = await axios.get(`${singleCocktailUrl}${id}`);
-  return { id, data };
+const singleCocktailDetailsQuery = (id) => {
+  return {
+    queryKey: ['cocktail', id],
+    queryFn: async () => {
+      const response = await axios.get(`${singleCocktailUrl}${id}`);
+      return response.data;
+    },
+  };
 };
 
+export const loader =
+  (queryClient) =>
+  async ({ params }) => {
+    const { id } = params;
+    await queryClient.ensureQueryData(singleCocktailDetailsQuery(id));
+    return { id };
+  };
+
 const Cocktail = () => {
-  const { id, data } = useLoaderData();
+  const { id } = useLoaderData();
+  const { data } = useQuery(singleCocktailDetailsQuery(id));
 
   /*
   - Handle error when route doesn't exist
