@@ -2,21 +2,38 @@ import axios from 'axios';
 import { useLoaderData } from 'react-router-dom';
 import CocktailList from '../components/CocktailList';
 import SearchForm from '../components/SearchForm';
+import { useQuery } from '@tanstack/react-query';
 
 const cocktailSearchUrl =
   'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+
+const searchCocktailsQuery = (searchTerm) => {
+  return {
+    queryKey: ['search', searchTerm || 'all'],
+    queryFn: async () => {
+      const response = await axios.get(`${cocktailSearchUrl}${searchTerm}`);
+      return response.data.drinks;
+    },
+  };
+};
 
 export const loader = async ({ request }) => {
   const url = new URL(request.url);
 
   const searchTerm = url.searchParams.get('search') || '';
-  const response = await axios.get(`${cocktailSearchUrl}${searchTerm}`);
-  const data = response.data.drinks;
-  return { drinks: data, searchTerm };
+  return { searchTerm };
 };
 
 const Landing = () => {
-  const { drinks, searchTerm } = useLoaderData();
+  const { searchTerm } = useLoaderData();
+  const { data: drinks, isLoading } = useQuery(
+    searchCocktailsQuery(searchTerm)
+  );
+
+  if (isLoading) {
+    return <h2>Cocktails are not fetched before loading</h2>;
+  }
+
   return (
     <>
       <SearchForm searchTerm={searchTerm} />
