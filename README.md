@@ -1,4 +1,4 @@
-# MixMaaster 🍸
+# MixMaster 🍸
 > PROD [Live] : https://react-mixmaster-v2-prod.netlify.app/
 
 #### MixMaster consists of a straight forward user interface where there is a 
